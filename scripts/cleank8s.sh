@@ -28,7 +28,8 @@ if [ "${answer}" = "yes" -o "${answer}" = "y" ];then
 	ifconfig docker0 down
 	ip link delete cni0
 	ip link delete flannel.1
-	yum remove -y kubelet
+	yum remove -y kubelet kubectl kubeadm conntrack-tools cri-tools libnetfilter_cttimeout libnetfilter_queue socat
+	rm -rf /etc/kubernetes
 
 	echo "*********************************************************************************************************"
 	echo "*   NOTE:                                                                                               *"

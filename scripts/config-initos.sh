@@ -95,7 +95,7 @@ sleep 1
 
 echo "step:------> configDocker begin"
 
-cd /usr/local/src/kubeedge
+cd /usr/local/src/k8sinstall
 tar -zxf docker-18.09.5.tgz
 cp docker/* /usr/local/bin
 
@@ -149,7 +149,7 @@ echo "*                                                                         
 echo "*********************************************************************************************************"
 echo "step:------> loading some docker images"
 sleep 1
-cd /usr/local/src/kubeedge
+cd /usr/local/src/k8sinstall
 echo "step:------> unzip docker images packages"
 sleep 1
 tar -zxf k8s-imgs.tar.gz
@@ -191,7 +191,7 @@ echo "*   NOTE:                                                                 
 echo "*        begin to config kube-tools ,including: deploy kubelet/kubectl/kubeadm                          *"
 echo "*                                                                                                       *"
 echo "*********************************************************************************************************"
-	cd /usr/local/src/kubeedge/
+	cd /usr/local/src/k8sinstall/
 	tar -zxf rpm.tar.gz
 	cd rpm
 	rpm -ivh --force *

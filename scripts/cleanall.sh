@@ -34,7 +34,8 @@ if [ "${answer}" = "yes" -o "${answer}" = "y" ];then
 		systemctl stop kubelet
 		rm -rf /usr/bin/kube*
 		rm -rf /usr/lib/systemd/system/kubelet.service
-		yum -y remove kubelet
+		yum remove -y kubelet kubectl kubeadm conntrack-tools cri-tools libnetfilter_cttimeout libnetfilter_queue socat
+		rm -rf /etc/kubernetes
 
 
 n=$(kubectl get ns | grep kubeedge|wc -l)
