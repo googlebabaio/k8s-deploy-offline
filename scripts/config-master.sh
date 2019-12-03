@@ -283,7 +283,7 @@ checkHostsAndKubeiniConfig(){
     configMaster
     configClusterAfter
 
-    if [ "${answer}" = "yes" -o "${answer}" = "y" ];then
+    if [ "${CNIOPTION}" = "calico" ];then
       configClusterNetwork_calico
     else
        configClusterNetwork_flannel
