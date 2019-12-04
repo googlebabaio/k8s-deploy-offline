@@ -106,7 +106,7 @@ sleep 1
 echo "step:------> configDocker begin"
 
 cd /usr/local/src/k8sinstall
-tar -zxf docker-18.09.5.tgz
+#tar -zxf docker-18.09.5.tgz
 cp docker/* /usr/local/bin
 
 cd /usr/lib/systemd/system
@@ -163,7 +163,7 @@ sleep 1
 cd /usr/local/src/k8sinstall
 echo "step:------> unzip docker images packages"
 sleep 1
-tar -zxf k8s-imgs.tar.gz
+#tar -zxf k8s-imgs.tar.gz
 check_ok
 echo "step:------> unzip docker images packages completed."
 
@@ -205,7 +205,7 @@ echo "*                                                                         
 echo "*********************************************************************************************************"
 	cd /usr/local/src/k8sinstall/
   yum remove -y kubelet
-	tar -zxf rpm.tar.gz
+#tar -zxf rpm.tar.gz
 	cd rpm
 	rpm -ivh --force *
 
