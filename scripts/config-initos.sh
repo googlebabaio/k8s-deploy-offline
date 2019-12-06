@@ -48,7 +48,7 @@ echo "step:------> closeFirewalld completed."
 openBrigeSupport(){
     echo "step:------> openBrigeSupport begin"
 
-	cat <<EOF >  /etc/sysctl.d/k8s.conf
+	cat <<EOF >>  /etc/sysctl.conf
 net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
@@ -62,7 +62,7 @@ net.netfilter.nf_conntrack_max=2310720
 EOF
 
 	sysctl -p /etc/sysctl.conf
-	check_ok
+	#check_ok
 	sleep 1
     echo "step:------> openBrigeSupport completed."
 }
