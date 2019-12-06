@@ -18,7 +18,9 @@ check_ok() {
 }
 
 prepareEnv(){
-echo "*********************************************************************************************************"
+echo "********************************
+
+*************************************************************************"
 echo "*   NOTE:                                                                                               *"
 echo "*        begin to init os ,including: closeFirewalld ,closeFirewalld,closeSelinux,openBrigeSupport      *"
 echo "*                                                                                                       *"
@@ -108,7 +110,7 @@ echo "step:------> configDocker begin"
 cd /usr/local/src/k8sinstall
 #tar -zxf docker-18.09.5.tgz
 cp docker/* /usr/local/bin
-
+chmod +x /usr/local/bin/*
 cd /usr/lib/systemd/system
 
 cat > docker.service <<EOF
