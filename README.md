@@ -11,6 +11,10 @@
 
 ## 离线包说明
 离线包下载地址：
+```
+链接：https://pan.baidu.com/s/1XPAUitQvggLqb-R6cW43vg
+提取码：mta6
+```
 
 离线包目录：
 ```
@@ -67,7 +71,7 @@ KUBERNETES_VERSION=1.18.2
 
 5.执行安装
 ```
-sh installk8s.sh
+sh k8s-install.sh
 ```
 
 执行后，会有一个检查的提示，告诉我们apiserver的地址是否是我们想要的，如果不是，参考第4步进行修改。
@@ -78,10 +82,20 @@ sh installk8s.sh
 
 如果没有其他什么问题，那应该是很快速就会好的。
 
-5.其他节点的加入
-在上面输出最后已经有note提示了，在其他node节点在安装完成只需要执行：
+6.其他节点的加入
+
+其他节点要加入到集群中，首先需要做一个初始化：
+![](assets/k8s-node-init.png)
+
+如图所示，在执行 k8s-install.sh 的时候选择第2个选项，即可以把node节点做初始化，包括：
+- OS的初始化
+- 安装docker
+- 装载镜像
+- 安装kubelet
+
+在节点初始化完成后，在node节点接着执行join的命令：
 ```shell
-kubeadm join 172.31.0.200 :6443 --token ocoflu.grf7kbj2csus7vbi  \                                *
+kubeadm join 172.31.0.200 :6443 --token ocoflu.grf7kbj2csus7vbi  \
 --discovery-token-ca-cert-hash sha256:54cef6226b401e67b6d3536610e70f3934f1f7516ec2abc09eb57dce1744e4ed
 ```
 

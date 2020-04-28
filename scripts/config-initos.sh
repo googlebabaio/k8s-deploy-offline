@@ -95,7 +95,7 @@ sleep 1
 
 echo "step:------> configDocker begin"
 
-cd /usr/local/src/k8sinstall
+cd /usr/local/src/k8spkg
 #tar -zxf docker-18.09.5.tgz
 cp docker/* /usr/local/bin
 
@@ -123,11 +123,11 @@ KillMode=process
 WantedBy=multi-user.target
 EOF
 
-    systemctl daemon-reload
-    systemctl enable docker
-    systemctl start docker
-    check_ok
-    echo "step:------> configDocker completed."
+systemctl daemon-reload
+systemctl enable docker
+systemctl start docker
+check_ok
+echo "step:------> configDocker completed."
 echo "*********************************************************************************************************"
 echo "*   NOTE:                                                                                               *"
 echo "*         finish config docker.                                                                         *"
@@ -149,31 +149,22 @@ echo "*                                                                         
 echo "*********************************************************************************************************"
 echo "step:------> loading some docker images"
 sleep 1
-cd /usr/local/src/k8sinstall
-echo "step:------> unzip docker images packages"
-sleep 1
-#tar -zxf k8s-imgs.tar.gz
-check_ok
-echo "step:------> unzip docker images packages completed."
 
-cd images
-docker load < etcd.tar
-docker load < coredns.tar
-docker load < flannel.tar
-docker load < pause.tar
+cd /usr/local/src/k8spkg/images
 
-docker load < kube-apiserver.tar
-docker load < kube-controller-manager.tar
-docker load < kube-proxy.tar
-docker load < kube-scheduler.tar
-
-docker load < pod2daemon-flexvol.tar
-docker load < calico-kube-controllers.tar
-docker load < caliconode.tar
-docker load < calicocni.tar
-
-docker load < nfs-client-provisioner.tar
-docker load < traefik.tar
+docker load <  kube-proxy.tar
+docker load <  kube-scheduler.tar
+docker load <  kube-controller-manager.tar
+docker load <  kube-apiserver.tar
+docker load <  pause.tar
+docker load <  coredns.tar
+docker load <  calico-node.tar
+docker load <  calico-kube-controllers.tar
+docker load <  calico-cni.tar
+docker load <  calico-pod2daemon-flexvol.tar
+docker load <  etcd.tar
+docker load <  flannel.tar
+docker load <  traefik.tar
 
 echo "step:------> loading some k8s images completed."
 sleep 1
@@ -191,7 +182,7 @@ echo "*   NOTE:                                                                 
 echo "*        begin to config kube-tools ,including: deploy kubelet/kubectl/kubeadm                          *"
 echo "*                                                                                                       *"
 echo "*********************************************************************************************************"
-	cd /usr/local/src/k8sinstall/
+	cd /usr/local/src/k8spkg/
 	#tar -zxf rpm.tar.gz
 	cd rpm
 	rpm -ivh --force *

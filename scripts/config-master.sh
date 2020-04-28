@@ -164,7 +164,6 @@ echo "step:------> loading some docker images"
 sleep 1
 cd /usr/local/src/k8spkg/images
 
-
 docker load <  kube-proxy.tar
 docker load <  kube-scheduler.tar
 docker load <  kube-controller-manager.tar
