@@ -1,6 +1,6 @@
 #!/bin/bash
 
-chmod -R +x scripts
+#chmod -R +x scripts
 
 KUBEDEPLOY_INI_FULLPATH=$(pwd)/kubedeploy.ini
 

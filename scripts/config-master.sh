@@ -76,7 +76,7 @@ EOF
 	sysctl -p /etc/sysctl.conf
 	#check_ok
 	sleep 1
-    echo "step:------> openBrigeSupport completed."
+  echo "step:------> openBrigeSupport completed."
 }
 
 
@@ -107,7 +107,7 @@ sleep 1
 
 echo "step:------> configDocker begin"
 
-cd /usr/local/src/k8sinstall
+cd /usr/local/src/k8spkg
 #tar -zxf docker-18.09.5.tgz
 cp docker/* /usr/local/bin
 chmod +x /usr/local/bin/*
@@ -162,7 +162,7 @@ echo "**************************************************************************
 
 echo "step:------> loading some docker images"
 sleep 1
-cd /usr/local/src/k8sinstall/images
+cd /usr/local/src/k8spkg/images
 
 
 docker load <  kube-proxy.tar
@@ -176,8 +176,8 @@ docker load <  calico-kube-controllers.tar
 docker load <  calico-cni.tar
 docker load <  calico-pod2daemon-flexvol.tar
 docker load <  etcd.tar
-
-docker load < traefik.tar
+docker load <  flannel.tar
+docker load <  traefik.tar
 
 echo "step:------> loading some k8s images completed."
 sleep 1
@@ -196,10 +196,9 @@ echo "*   NOTE:                                                                 
 echo "*        begin to config kube-tools ,including: deploy kubelet/kubectl/kubeadm                          *"
 echo "*                                                                                                       *"
 echo "*********************************************************************************************************"
-	cd /usr/local/src/k8sinstall/
+	cd /usr/local/src/k8spkg/rpm
   yum remove -y kubelet
 #tar -zxf rpm.tar.gz
-	cd rpm
 	rpm -ivh --force *
 
   systemctl enable kubelet.service
@@ -214,6 +213,9 @@ echo "**************************************************************************
 configMaster(){
     echo "step:------> begin to config master"
 	  systemctl stop kubelet
+    echo "KUBERNETES_VERSION is : ${KUBERNETES_VERSION}"
+    echo "pod-network-cidr is : ${POD_NETWORK_CIDR}"
+    echo "apiserver-advertise-address is : ${APISERVER_ADVERTISE_ADDRESS}"
     kubeadm init --kubernetes-version=v${KUBERNETES_VERSION} --pod-network-cidr=${POD_NETWORK_CIDR} --apiserver-advertise-address=${APISERVER_ADVERTISE_ADDRESS}
     check_ok
 }
@@ -226,8 +228,8 @@ configClusterAfter(){
 
 configClusterNetwork_calico(){
 	echo "step:------> begin to config cluster network by calico"
-	kubectl create -f /usr/local/src/k8sinstall/kube-calico.yaml
-	echo "step:------> cluster network flannel calico completed!"
+	kubectl create -f /usr/local/src/k8spkg/kube-calico.yaml
+	echo "step:------> cluster network calico completed!"
   echo "step:------> config master completed!"
   echo "*********************************************************************************************************"
   echo "*   NOTE:                                                                                               *"
@@ -240,7 +242,7 @@ configClusterNetwork_calico(){
 
 configClusterNetwork_flannel(){
 	echo "step:------> begin to config cluster network by flannel"
-	kubectl create -f /usr/local/src/k8sinstall/kube-flannel.yaml
+	kubectl create -f /usr/local/src/k8spkg/kube-flannel.yaml
 	echo "step:------> cluster network flannel config completed!"
   echo "step:------> config master completed!"
   echo "*********************************************************************************************************"

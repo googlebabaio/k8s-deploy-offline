@@ -7,5 +7,5 @@ configKubectlAutoSpell(){
 }
 
 configNStool(){
-  ln -s /usr/local/src/k8sinstall/tools/kubens /usr/local/bin/ns
+  ln -s /usr/local/src/k8spkg/tools/kubens /usr/local/bin/ns
 }
