@@ -162,31 +162,22 @@ echo "**************************************************************************
 
 echo "step:------> loading some docker images"
 sleep 1
-cd /usr/local/src/k8sinstall
-echo "step:------> unzip docker images packages"
-sleep 1
-#tar -zxf k8s-imgs.tar.gz
-check_ok
-echo "step:------> unzip docker images packages completed."
+cd /usr/local/src/k8sinstall/images
 
-  cd images
-  docker load < etcd.tar
-  docker load < coredns.tar
-  docker load < flannel.tar
-  docker load < pause.tar
 
-  docker load < kube-apiserver.tar
-  docker load < kube-controller-manager.tar
-  docker load < kube-proxy.tar
-  docker load < kube-scheduler.tar
+docker load <  kube-proxy.tar
+docker load <  kube-scheduler.tar
+docker load <  kube-controller-manager.tar
+docker load <  kube-apiserver.tar
+docker load <  pause.tar
+docker load <  coredns.tar
+docker load <  calico-node.tar
+docker load <  calico-kube-controllers.tar
+docker load <  calico-cni.tar
+docker load <  calico-pod2daemon-flexvol.tar
+docker load <  etcd.tar
 
-  docker load < pod2daemon-flexvol.tar
-  docker load < calico-kube-controllers.tar
-  docker load < caliconode.tar
-  docker load < calicocni.tar
-
-  docker load < nfs-client-provisioner.tar
-  docker load < traefik.tar
+docker load < traefik.tar
 
 echo "step:------> loading some k8s images completed."
 sleep 1
