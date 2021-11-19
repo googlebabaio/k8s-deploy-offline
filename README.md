@@ -12,8 +12,8 @@
 ## 离线包说明
 离线包下载地址：
 ```
-链接：https://pan.baidu.com/s/1XPAUitQvggLqb-R6cW43vg
-提取码：mta6
+链接: https://pan.baidu.com/s/18i0clQYPVsL6ko7YlBLsFg 
+提取码: 7qc0 
 ```
 
 离线包目录：
