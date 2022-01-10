@@ -131,12 +131,34 @@ Taints:             <none>
 kubectl taint node node01 node-role.kubernetes.io/master="":NoSchedule
 ```
 
-# 创建deployment
+# 创建deploy和svc测试
+
+## 创建deployment
 ```
 kubectl create deployment mynginx --image=nginx 
 ```
 
 https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/deploy-app/deploy-interactive/
+
+## 创建svc
+```
+# kubectl expose deployment/mynginx --type="NodePort" --port 80
+service/mynginx exposed
+# kubectl get svc
+NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+kube-dns   ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   4d8h
+mynginx    NodePort    10.110.185.229   <none>        80:30207/TCP             7s
+```
+
+## 测试
+```
+[root@k8s ingress]# curl localhost:30207
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+...
+```
 
 # roadmap
 
