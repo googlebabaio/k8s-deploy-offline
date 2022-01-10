@@ -131,6 +131,12 @@ Taints:             <none>
 kubectl taint node node01 node-role.kubernetes.io/master="":NoSchedule
 ```
 
+# 创建deployment
+```
+kubectl create deployment mynginx --image=nginx 
+```
+
+https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/deploy-app/deploy-interactive/
 
 # roadmap
 
